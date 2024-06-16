@@ -1,11 +1,11 @@
 # File Path: API-Rock_of_Ages_NSS-Python-Django/rockapi/views/rock_view.py
 
 from django.http import HttpResponseServerError
-from rest_framework import serializers, status
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 from rockapi.models import Rock
-from django.contrib.auth.models import User  # ! Added import for User model
+from rockapi.serializers import RockSerializer  # ! Updated import to use the new serializer
 
 class RockView(ViewSet):
     """Rock view set"""
@@ -42,10 +42,3 @@ class RockView(ViewSet):
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Exception as ex:
             return HttpResponseServerError(ex)
-
-class RockSerializer(serializers.ModelSerializer):
-    """JSON serializer"""
-
-    class Meta:
-        model = Rock
-        fields = ('id', 'name', 'weight', 'type')  # ! Updated fields to include 'type'
