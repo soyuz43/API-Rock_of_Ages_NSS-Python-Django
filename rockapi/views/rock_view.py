@@ -5,7 +5,8 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 from rockapi.models import Rock
-from rockapi.serializers import RockSerializer  # ! Updated import to use the new serializer
+from django.contrib.auth.models import User  # ! Added import for User model
+from rockapi.serializers import RockSerializer  # ! Import the RockSerializer from serializers.py
 
 class RockView(ViewSet):
     """Rock view set"""
